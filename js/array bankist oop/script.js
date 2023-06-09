@@ -134,14 +134,30 @@ const section1 = document.querySelector('#section--1');
 
 btnScrollTo.addEventListener('click', function (e) {
   const s1cords = section1.getBoundingClientRect();
+
   console.log(s1cords);
+
   console.log(e.target.getBoundingClientRect());
-
   console.log('current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
-
   console.log(
     'height/width',
+
     document.documentElement.clientHeight,
+
     document.documentElement.clientWidth
   );
+
+  //SCROLLING
+
+  // window.scrollTo(
+  //   s1cords.left + window.pageXOffset,
+  //   s1cords.top + window.pageYOffset
+  // );
+
+  // smooth scrolling
+  window.scrollTo({
+    left: s1cords.left + window.pageXOffset,
+    top: s1cords.top + window.pageYOffset,
+    behavior: 'smooth',
+  });
 });
