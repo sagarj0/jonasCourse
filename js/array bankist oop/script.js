@@ -155,9 +155,25 @@ btnScrollTo.addEventListener('click', function (e) {
   // );
 
   // smooth scrolling
-  window.scrollTo({
-    left: s1cords.left + window.pageXOffset,
-    top: s1cords.top + window.pageYOffset,
-    behavior: 'smooth',
-  });
+  // window.scrollTo({
+  //   left: s1cords.left + window.pageXOffset,
+  //   top: s1cords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+const h1 = document.querySelector('h1');
+
+const alertH1 = function (e) {
+  alert('addEventListener: yep you are hovering over heading');
+};
+
+h1.addEventListener('mouseenter', alertH1);
+
+// h1.onmouseenter = function (e) {
+//   alert('addEventListener: yep you are hovering over heading');
+// };
+
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 2000);
