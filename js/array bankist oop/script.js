@@ -52,18 +52,18 @@ console.log(allButtons);
 /////CREATING AND INSERTING ELEMENTS
 // message.textContent = 'we use cookies for improved functionality and analytcs';
 
-const message = document.createElement('div');
+// const message = document.createElement('div');
 
-message.classList.add('cookie-message');
+// message.classList.add('cookie-message');
 
-message.innerHTML =
-  'we use cookies for improved functionality and analytcs. <button class= "btn btn--close--cookie">Got it!</button>';
+// message.innerHTML =
+//   'we use cookies for improved functionality and analytcs. <button class= "btn btn--close--cookie">Got it!</button>';
 
-header.prepend(message);
+// header.prepend(message);
 
-message.style.backgroundColor = '#37383d';
+// message.style.backgroundColor = '#37383d';
 
-message.style.width = '120%';
+// message.style.width = '120%';
 // header.append(message);
 // header.append(message.cloneNode(true));
 //header.after(message);
@@ -72,11 +72,11 @@ message.style.width = '120%';
 
 //deleting elements
 
-document
-  .querySelector('.btn--close--cookie')
-  .addEventListener('click', function () {
-    message.remove();
-  });
+// document
+//   .querySelector('.btn--close--cookie')
+//   .addEventListener('click', function () {
+//     message.remove();
+//   });
 
 //Dom mainpulation of CSS
 
@@ -86,16 +86,16 @@ document
 
 // message.style.height =
 
-console.log(getComputedStyle(message).height);
+// console.log(getComputedStyle(message).height);
 
 // console.log();
 
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 20 + 'px';
+// message.style.height =
+// Number.parseFloat(getComputedStyle(message).height, 10) + 20 + 'px';
 
 // console.log(getComputedStyle(message).height);
 
-document.documentElement.style.setProperty('--color-primary', 'orangered');
+// document.documentElement.style.setProperty('--color-primary', 'orangered');
 
 //ATTRIBUTES
 /*
@@ -164,16 +164,39 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 
-const alertH1 = function (e) {
-  alert('addEventListener: yep you are hovering over heading');
-};
-
-h1.addEventListener('mouseenter', alertH1);
-
-// h1.onmouseenter = function (e) {
+// const alertH1 = function (e) {
 //   alert('addEventListener: yep you are hovering over heading');
 // };
 
-setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 2000);
+// h1.addEventListener('mouseenter', alertH1);
+
+// // h1.onmouseenter = function (e) {
+// //   alert('addEventListener: yep you are hovering over heading');
+// // };
+
+// setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 2000);
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+console.log(`${randomColor(0, 255)}`);
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+
+  ///STOP PROPAGATION
+  e.stopPropagation();
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+});
+
+document.querySelector('.nav').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+});
