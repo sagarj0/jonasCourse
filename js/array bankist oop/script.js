@@ -34,6 +34,78 @@ document.addEventListener('keydown', function (e) {
 //////////////
 //////////////
 
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1cords = section1.getBoundingClientRect();
+
+  console.log(s1cords);
+
+  console.log(e.target.getBoundingClientRect());
+  console.log('current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+  console.log(
+    'height/width',
+
+    document.documentElement.clientHeight,
+
+    document.documentElement.clientWidth
+  );
+
+  //SCROLLING
+
+  // window.scrollTo(
+  //   s1cords.left + window.pageXOffset,
+  //   s1cords.top + window.pageYOffset
+  // );
+
+  // smooth scrolling
+  // window.scrollTo({
+  //   left: s1cords.left + window.pageXOffset,
+  //   top: s1cords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+// const h1 = document.querySelector('h1');
+
+/////PAGE NAVIGATIONN
+/*
+document.querySelectorAll('.nav__link').forEach(function (el) {
+  el.addEventListener('click', function (e) {
+    e.preventDefault();
+    console.log('link');
+
+    const id = this.getAttribute('href');
+    console.log(id);
+
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+*/
+
+///EVENT DELIGATION
+
+//1.ADD EVENT LISTENER TO COMMOM PARENT ELEMENT
+//2.DETERMINE WHAT ELEMENT ORIGINATED THE EVENT
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  //matching the target elements inside parent element
+
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+////DOM TRAVERSING
+
 /*
 console.log(document.documentElement);
 console.log(document.head);
@@ -128,44 +200,6 @@ logo.classList.contains('c');
 
 //implementing smooth scrolling
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-
-const section1 = document.querySelector('#section--1');
-
-btnScrollTo.addEventListener('click', function (e) {
-  const s1cords = section1.getBoundingClientRect();
-
-  console.log(s1cords);
-
-  console.log(e.target.getBoundingClientRect());
-  console.log('current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
-  console.log(
-    'height/width',
-
-    document.documentElement.clientHeight,
-
-    document.documentElement.clientWidth
-  );
-
-  //SCROLLING
-
-  // window.scrollTo(
-  //   s1cords.left + window.pageXOffset,
-  //   s1cords.top + window.pageYOffset
-  // );
-
-  // smooth scrolling
-  // window.scrollTo({
-  //   left: s1cords.left + window.pageXOffset,
-  //   top: s1cords.top + window.pageYOffset,
-  //   behavior: 'smooth',
-  // });
-
-  section1.scrollIntoView({ behavior: 'smooth' });
-});
-
-// const h1 = document.querySelector('h1');
-
 // const alertH1 = function (e) {
 //   alert('addEventListener: yep you are hovering over heading');
 // };
@@ -178,25 +212,25 @@ btnScrollTo.addEventListener('click', function (e) {
 
 // setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 2000);
 
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
 
-const randomColor = () =>
-  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
 
-console.log(`${randomColor(0, 255)}`);
+// console.log(`${randomColor(0, 255)}`);
 
-document.querySelector('.nav__link').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
 
-  ///STOP PROPAGATION
-  e.stopPropagation();
-});
+//   ///STOP PROPAGATION
+//   e.stopPropagation();
+// });
 
-document.querySelector('.nav__links').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-});
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
 
-document.querySelector('.nav').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-});
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
