@@ -104,6 +104,35 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
+//TABBED COMPOMENET
+
+const tabs = document.querySelectorAll('.operations__tab');
+
+const tabsContainer = document.querySelector('.operations__tab-container');
+
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+
+  if (!clicked) return;
+
+  //REMOVINNG ACTIVE CLASSES
+
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+
+  clicked.classList.add('operations__tab--active');
+
+  //ACTIVE TAB
+  //ACTIVATING CONTENT AREA
+
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
 ////DOM TRAVERSING
 
 /*
@@ -235,30 +264,30 @@ logo.classList.contains('c');
 //   this.style.backgroundColor = randomColor();
 // });
 
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 
-console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.querySelectorAll('.highlight'));
 
-console.log(h1.childNodes);
+// console.log(h1.childNodes);
 
-console.log(h1.children);
+// console.log(h1.children);
 
-h1.firstElementChild.style.color = 'white';
+// h1.firstElementChild.style.color = 'white';
 
-h1.lastElementChild.style.color = 'orangered';
+// h1.lastElementChild.style.color = 'orangered';
 
-//GOING UPWARDS: PARENTS
+// //GOING UPWARDS: PARENTS
 
-console.log(h1.parentNode);
+// console.log(h1.parentNode);
 
-console.log(h1.parentElement);
+// console.log(h1.parentElement);
 
-h1.closest('.header').style.background = 'var(--gradient-secondary)';
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
 
-console.log(h1.previousElementSibling);
+// console.log(h1.previousElementSibling);
 
-console.log(h1.nextElementSibling);
+// console.log(h1.nextElementSibling);
 
-console.log(h1.previousSibling);
+// console.log(h1.previousSibling);
 
-console.log(h1.nextSibling);
+// console.log(h1.nextSibling);
