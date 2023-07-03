@@ -185,7 +185,7 @@ observer.observe(section1);
 
 const navHeight = nav.getBoundingClientRect().height;
 
-console.log(navHeight);
+// console.log(navHeight);
 
 const stickyNav = function (entries) {
   const [entry] = entries;
@@ -202,6 +202,21 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 headerObserver.observe(header);
 
 ////DOM TRAVERSING
+
+const obsCallback = function (entries, observer) {
+  entries.forEach(entry => {
+    console.log(entry);
+  });
+};
+
+const obsoptions = {
+  root: null,
+  threshold: 0.1,
+};
+
+const observer = new IntersectionObserver(obsCallback, obsoptions);
+
+observer.observe(section1);
 
 /*
 console.log(document.documentElement);
