@@ -201,22 +201,24 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 
 headerObserver.observe(header);
 
+//////REVEALING ELEMENTS ON SCROLL
+
 ////DOM TRAVERSING
 
-const obsCallback = function (entries, observer) {
-  entries.forEach(entry => {
-    console.log(entry);
-  });
-};
+// const obsCallback = function (entries, observer) {
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// };
 
-const obsoptions = {
-  root: null,
-  threshold: 0.1,
-};
+// const obsoptions = {
+//   root: null,
+//   threshold: 0.1,
+// };
 
-const observer = new IntersectionObserver(obsCallback, obsoptions);
+// const observer = new IntersectionObserver(obsCallback, obsoptions);
 
-observer.observe(section1);
+// observer.observe(section1);
 
 /*
 console.log(document.documentElement);
