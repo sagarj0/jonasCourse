@@ -441,7 +441,7 @@ h4 {
 .dots__dot {
   border: none;
   background-color: #b9b9b9;
-  opacity: 0.7;
+  opacity: 0.2;
   height: 1rem;
   width: 1rem;
   border-radius: 50%;
@@ -459,7 +459,7 @@ h4 {
 
 .dots__dot--active {
   /* background-color: #fff; */
-  background-color: #888;
+  /* background-color: #888; */
   opacity: 1;
 }
 
