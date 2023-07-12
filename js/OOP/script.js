@@ -45,3 +45,11 @@ console.log(Person.prototype.isPrototypeOf(sagar)); //true
 console.log(Person.prototype.isPrototypeOf(Person)); //false
 
 console.log(sagar.birthY);
+
+// const func = function (sagar) {
+//   console.log(sagar);
+// };
+
+// const sgr = new func(3);
+
+// console.log(sgr);
