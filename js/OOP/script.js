@@ -46,8 +46,14 @@ console.log(Person.prototype.isPrototypeOf(Person)); //false
 
 console.log(sagar.birthY);
 
+Person.prototype.species = "Homo Sapiens";
+
+console.log(sagar.species, joshi.species);
+
 // const func = function (sagar) {
+
 //   console.log(sagar);
+
 // };
 
 // const sgr = new func(3);

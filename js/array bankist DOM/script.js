@@ -32,13 +32,13 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
+btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal);
 
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden') {
     closeModal();
   }
 });
@@ -281,7 +281,7 @@ const slider = function () {
   const activateDot = function (slide) {
     document
       .querySelectorAll('.dots__dot')
-      .forEach(dot => dot.classList.remove('dots__dot--active'));
+      .forEach(dot => dot.classList.remove('dots__dot--active');
 
     document
       .querySelector(`.dots__dot[data-slide="${slide}"]`)
@@ -335,7 +335,7 @@ const slider = function () {
   });
 
   dotContainer.addEventListener('click', function (e) {
-    if (e.target.classList.contains('dots__dot')) {
+    if (e.target.classList.contains('dots__dot') {
       const { slide } = e.target.dataset;
       // console.log(e.target.dataset);
       goToSlide(slide);
@@ -394,7 +394,7 @@ console.log(allButtons);
 
 // message.style.width = '120%';
 // header.append(message);
-// header.append(message.cloneNode(true));
+// header.append(message.cloneNode(true);
 //header.after(message);
 
 //.insertAdjacentHTML
@@ -434,17 +434,17 @@ console.log(logo.src);
 
 console.log(logo.stylist); //undefined
 
-console.log(logo.getAttribute('stylist')); //works
+console.log(logo.getAttribute('stylist'); //works
 
 console.log(logo.src);
 
-console.log(logo.getAttribute('src'));
+console.log(logo.getAttribute('src');
 
 const link = document.querySelector('.nav__link--btn');
 
 console.log(link.href);
 
-console.log(link.getAttribute('href'));
+console.log(link.getAttribute('href');
 
 console.log(logo.dataset.versionNumber);
 
@@ -494,7 +494,7 @@ logo.classList.contains('c');
 
 // const h1 = document.querySelector('h1');
 
-// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.querySelectorAll('.highlight');
 
 // console.log(h1.childNodes);
 
