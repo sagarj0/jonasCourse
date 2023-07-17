@@ -1,5 +1,5 @@
 "use strict";
-
+/*
 const Person = function (firstN, birthY) {
   // console.log(this);
 
@@ -59,3 +59,48 @@ console.log(sagar.species, joshi.species);
 // const sgr = new func(3);
 
 // console.log(sgr);
+*/
+class PersonCl {
+  constructor(firstN, birthY) {
+    this.firstNmae = firstN;
+    this.birthYear = birthY;
+  }
+
+  calcAge() {
+    console.log(2023 - this.birthYear);
+  }
+
+  get age() {
+    return 2023 - this.birthYear;
+  }
+
+  static hey() {
+    console.log("Hey there");
+  }
+}
+
+PersonCl.hey();
+
+const sagarJ = new PersonCl("sagar", 2001);
+
+console.log(sagarJ);
+
+sagarJ.calcAge();
+
+// sagarJ.hey();
+
+// const account = {
+//   owner: "jonas",
+
+//   movements: [210, 310, 200, 562],
+
+//   get latest() {
+//     return this.movements.slice(-1).pop();
+//   },
+
+//   set latest(mov) {
+//     this.movements.push(mov);
+//   },
+// };
+
+// console.log(account.latest);
