@@ -60,47 +60,103 @@ console.log(sagar.species, joshi.species);
 
 // console.log(sgr);
 */
-class PersonCl {
-  constructor(firstN, birthY) {
-    this.firstNmae = firstN;
-    this.birthYear = birthY;
-  }
+// class PersonCl {
+//   constructor(firstN, birthY) {
+//     this.firstNmae = firstN;
+//     this.birthYear = birthY;
+//   }
 
-  calcAge() {
-    console.log(2023 - this.birthYear);
-  }
+//   calcAge() {
+//     console.log(2023 - this.birthYear);
+//   }
 
-  get age() {
-    return 2023 - this.birthYear;
-  }
+//   get age() {
+//     return 2023 - this.birthYear;
+//   }
 
-  static hey() {
-    console.log("Hey there");
-  }
-}
+//   static hey() {
+//     console.log("Hey there");
+//   }
+// }
 
-PersonCl.hey();
+// PersonCl.hey();
 
-const sagarJ = new PersonCl("sagar", 2001);
+// const sagarJ = new PersonCl("sagar", 2001);
 
-console.log(sagarJ);
+// console.log(sagarJ);
 
-sagarJ.calcAge();
+// sagarJ.calcAge();
 
-// sagarJ.hey();
+// // sagarJ.hey();
 
-// const account = {
-//   owner: "jonas",
+// // const account = {
+// //   owner: "jonas",
 
-//   movements: [210, 310, 200, 562],
+// //   movements: [210, 310, 200, 562],
 
-//   get latest() {
-//     return this.movements.slice(-1).pop();
+// //   get latest() {
+// //     return this.movements.slice(-1).pop();
+// //   },
+
+// //   set latest(mov) {
+// //     this.movements.push(mov);
+// //   },
+// // };
+
+// // console.log(account.latest);
+
+// ///OBJECT.CREATE METHOD
+// const personProto = {
+//   calcAge() {
+//     console.log(2023 - this.birthYear);
 //   },
-
-//   set latest(mov) {
-//     this.movements.push(mov);
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
 //   },
 // };
 
-// console.log(account.latest);
+// const sagar = Object.create(personProto);
+
+// console.log(sagar);
+// sagar.birthYear = 2001;
+// sagar.calcAge();
+
+// const joshi = Object.create(personProto);
+
+// joshi.init("sagar", 2002);
+// joshi.calcAge();
+
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed} Km/h`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed} Km/h`);
+  }
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+
+const Bugatti = new CarCl("Bugatti", 230);
+
+console.log(Bugatti.speedUS);
+
+Bugatti.accelerate();
+Bugatti.accelerate();
+Bugatti.brake();
+Bugatti.speedUS = 140;
+console.log(Bugatti);

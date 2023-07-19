@@ -15,7 +15,7 @@ const section1 = document.querySelector('#section--1');
 
 const tabs = document.querySelectorAll('.operations__tab');
 
-const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContainer = document.querySelector('.operations__tabk-container');
 
 const tabsContent = document.querySelectorAll('.operations__content');
 
@@ -281,7 +281,7 @@ const slider = function () {
   const activateDot = function (slide) {
     document
       .querySelectorAll('.dots__dot')
-      .forEach(dot => dot.classList.remove('dots__dot--active');
+      .forEach(dot => dot.classList.re      move('dots__dot--active');
 
     document
       .querySelector(`.dots__dot[data-slide="${slide}"]`)
