@@ -160,3 +160,42 @@ Bugatti.accelerate();
 Bugatti.brake();
 Bugatti.speedUS = 140;
 console.log(Bugatti);
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2023 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+  this.course = course;
+
+  // this.calcAge = function () {
+  //   console.log(`${this.firstName} is ${2023 - this.birthYear} years old`);
+  // };
+
+  this.studying = function () {
+    console.log(`${this.firstName} is studying ${this.course}`);
+  };
+};
+
+//LINKING PROTOTYPE
+
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`my name is ${this.firstName} and i study ${this.course}`);
+};
+
+const Suraj = new Student("Suraj", 1999, "Agriculture");
+
+console.log(Suraj);
+
+Suraj.calcAge();
+
+// Suraj.studying();
