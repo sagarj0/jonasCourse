@@ -15,7 +15,7 @@ const section1 = document.querySelector('#section--1');
 
 const tabs = document.querySelectorAll('.operations__tab');
 
-const tabsContainer = document.querySelector('.operations__tabk-container');
+const tabsContainer = document.querySelector('.operations__tab-container');
 
 const tabsContent = document.querySelectorAll('.operations__content');
 
@@ -32,13 +32,13 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal);
+btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
 
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape' && !modal.classList.contains('hidden') {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
     closeModal();
   }
 });
@@ -281,7 +281,7 @@ const slider = function () {
   const activateDot = function (slide) {
     document
       .querySelectorAll('.dots__dot')
-      .forEach(dot => dot.classList.re      move('dots__dot--active');
+      .forEach(dot => dot.classList.remove('dots__dot--active'));
 
     document
       .querySelector(`.dots__dot[data-slide="${slide}"]`)
@@ -335,7 +335,7 @@ const slider = function () {
   });
 
   dotContainer.addEventListener('click', function (e) {
-    if (e.target.classList.contains('dots__dot') {
+    if (e.target.classList.contains('dots__dot')) {
       const { slide } = e.target.dataset;
       // console.log(e.target.dataset);
       goToSlide(slide);
