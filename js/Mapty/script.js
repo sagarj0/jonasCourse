@@ -20,17 +20,20 @@ if (navigator.geolocation) {
 
       console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
 
-      const map = L.map("map").setView([`${latitude}`, `${longitude}`], 12);
+      const map = L.map("map").setView([`${latitude}`, `${longitude}`], 13);
 
-      L.tileLayer("https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      L.marker([`${latitude}`, `${longitude}`])
-        .addTo(map)
-        .bindPopup("A pretty CSS popup.<br> Easily   customizable.")
-        .openPopup();
+      map.on("click", function (event) {
+        console.log(event);
+
+        const { lat, lng } = event.latlng;
+
+        L.marker([lat, lng]).addTo(map).bindPopup("Workout").openPopup();
+      });
     },
     function () {
       alert("Could not get your position");
