@@ -11,6 +11,46 @@ const inputDuration = document.querySelector(".form__input--duration");
 const inputCadence = document.querySelector(".form__input--cadence");
 const inputElevation = document.querySelector(".form__input--elevation");
 
+class Workout {
+  date = new Date();
+
+  id = (Date.now() + "").slice(-10);
+
+  constructor(coords, distance, duration) {
+    this.coords = coords;
+    this.distance = distance;
+    this.duration = duration;
+  }
+}
+
+class Running extends Workout {
+  constructor(coords, distance, duration, cadence) {
+    super(coords, distance, duration);
+    this.cadence = cadence;
+    this.calcPace();
+  }
+
+  calcPace() {
+    this.pace = this.duration / this.distance;
+    return this.pace;
+  }
+}
+
+class Cycling extends Workout {
+  constructor(coords, distance, duration, elevGain) {
+    super(coords, distance, duration);
+    this.elevGain = elevGain;
+  }
+  calcSpeed() {
+    this.speed = this.distance / (this.duration / 60);
+  }
+}
+
+// const run1 = new Running([27, 85], 5, 30, 150);
+// const cyc1 = new Cycling([27, 85], 5, 30, 200);
+
+// console.log(run1, cyc1);
+
 class App {
   #map;
   #mapEvent;
@@ -28,7 +68,7 @@ class App {
       navigator.geolocation.getCurrentPosition(
         this._loadMap.bind(this),
         function () {
-          alert("Could not get your posit ion");
+          alert("Could not get your position");
         }
       );
     }
