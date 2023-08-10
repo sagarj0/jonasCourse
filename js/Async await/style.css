@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 html {
@@ -29,7 +29,7 @@ body {
 .countries {
   /* margin-bottom: 8rem; */
   display: flex;
-
+  /* flex-wrap: wrap; */
   font-size: 2rem;
   opacity: 0;
   transition: opacity 1s;
@@ -42,6 +42,7 @@ body {
   width: 30rem;
   border-radius: 0.7rem;
   margin: 0 3rem;
+  /* padding: 10px; */
   /* overflow: hidden; */
 }
 
@@ -66,7 +67,7 @@ body {
 .country__img {
   width: 30rem;
   height: 17rem;
-  object-fit: cover;
+  object-fit: contain;
   background-color: #eee;
   border-top-left-radius: 0.7rem;
   border-top-right-radius: 0.7rem;
