@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* border: 1px solid #fff; */
 }
 
 html {
@@ -27,8 +28,10 @@ body {
 }
 
 .countries {
+  flex-wrap: wrap;
   /* margin-bottom: 8rem; */
   display: flex;
+  justify-content: center;
   /* flex-wrap: wrap; */
   font-size: 2rem;
   opacity: 0;
@@ -41,7 +44,7 @@ body {
   font-size: 1.8rem;
   width: 30rem;
   border-radius: 0.7rem;
-  margin: 0 3rem;
+  margin: 3rem;
   /* padding: 10px; */
   /* overflow: hidden; */
 }
