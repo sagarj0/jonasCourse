@@ -22,7 +22,7 @@ const renderCountry = function (data, className = '') {
     <p class="country__row"><span>🗣️</span>${
       Object.values(data.languages)[0]
     }</p>
-    <p class="country__row"><>💰</ span>${
+    <p class="country__row">💰</ span>${
       Object.values(data.currencies)[0].name
     }</p>
   </div>
@@ -171,7 +171,7 @@ btn.addEventListener('click', function () {
 });
 
 getCountryData('abcdef');
-*/
+
 
 /* 
 In this challenge you will build a function 'whereAmI' which renders a country ONLY based on GPS coordinates. For that, you will use a second API to geocode coordinates.
@@ -196,26 +196,61 @@ TEST COORDINATES 2: -33.933, 18.474
 
 GOOD LUCK 😀
 */
+/*
+const getCountryData = function (country) {
+  //country 1
 
-// console.log(navigator);
-// console.log(Math);
-
-// let longitude=0, latitude=0;
-
-const makeRequest = function ([lat, long]) {
-  fetch(`https://geocode.xyz/${lat},${long}?geoit=json`)
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => {
+      console.log(data);
 
-  setTimeout(makeRequest, 1000);
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+      if (!neighbour) return;
+
+      //country 2
+
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+    })
+    .then(response => response.json())
+    .then(data => renderCountry(data[0], 'neighbour'))
+    .catch(err => {
+      console.error(`${err} error`);
+      renderError(`Something went wrong ${err.message}. try again`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
+
+const whereAmI = function (lat, lang) {
+  fetch(
+    `https://geocode.xyz/${lat},${lang}?geoit=json&auth=18407264889908616115x32242`
+  )
+    .then(response => {
+      // console.log(response);
+      if (!response.ok) throw new Error(`problem with geocoding ${res.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      console.log(`you are in ${data.city}, ${data.country}`);
+      getCountryData(data.country);
+
+      // ApiData = data;
+    })
+    .catch(err => console.log(err.msg, 'error'));
 };
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
     function (position) {
       const { latitude, longitude } = position.coords;
-
-      makeRequest([latitude, longitude]);
+      // btn.addEventListener('click', function btnFunction(whereAmI) {
+      whereAmI(latitude, longitude);
+      // });
+      // btn.removeEventListener('click', () => {});
       // console.log(latitude, longitude);
       // makeRequest();
     },
@@ -224,5 +259,196 @@ if (navigator.geolocation) {
     }
   );
 }
+*/
+// whereAmI(27.66, 85.34);
 
-const whereAmI = function () {};
+// whereAmI(27.66, 85.34);
+
+// console.log(navigator);
+// console.log(Math);
+
+// let longitude=0, latitude=0;
+// let ApiData;
+
+// const makeRequest = function ([lat, long]) {
+//   fetch(`https://geocode.xyz/${lat},${long}?geoit=json`)
+//     .then(response => response.json())
+//     .then(data => {
+//       console.log(data);
+//       // ApiData = data;
+//     });
+
+//   // console.log(ApiData.distance);
+//   // if (!isNaN(+ApiData.distance)) return;
+
+//   setTimeout(() => {
+//     makeRequest([lat, long]);
+//   }, 1000);
+// };
+
+// const makeRequest = function ([lat, long]) {
+//   fetch(`https://geocode.xyz/${lat},${long}?geoit=json`)
+//     .then(response => response.json())
+//     .then(data => {
+//       console.log(data);
+//     })
+//     .catch(error => {
+//       console.error("Error fetching data:", error);
+//     });
+// };
+
+// if (navigator.geolocation) {
+//   navigator.geolocation.getCurrentPosition(
+//     function (position) {
+//       const { latitude, longitude } = position.coords;
+
+//       const requestInterval = 1000; // 1 second in milliseconds
+//       let lastRequestTime = 0;
+
+//       setInterval(() => {
+//         const currentTime = Date.now();
+//         if (currentTime - lastRequestTime >= requestInterval) {
+//           makeRequest([latitude, longitude]);
+//           lastRequestTime = currentTime;
+//         }
+//       }, requestInterval);
+//     },
+//     function () {
+//       console.log('error');
+//     }
+//   );
+// }
+
+// function fetchData() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const data = 'Some fetched data';
+//       resolve(data);
+//     }, 1000);
+//   });
+// }
+
+// fetchData()
+//   .then(result => {
+//     console.log(result);
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+
+// console.log('test start');
+
+// setTimeout(() => console.log('0 sec timer'), 0);
+
+// Promise.resolve('Resolved Promise 1').then(res => console.log(res));
+
+// console.log('test end ');
+
+/*
+
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log('Lottery allotment is happening');
+
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve('You win');
+    } else {
+      reject(new Error('you lost'));
+    }
+  }, 2000);
+});
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+//promisifying setTimeot
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(1)
+  .then(() => {
+    console.log('I waited for 1 sec');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited for 2 sec');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited for 3 sec');
+    return wait(1);
+  });
+
+Promise.resolve('xyz').then(res => console.log(res));
+
+Promise.reject(new Error('problem')).catch(res => console.error(res));
+*/
+
+const getCountryData = function (country) {
+  //country 1
+
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+      if (!neighbour) return;
+
+      //country 2
+
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+    })
+    .then(response => response.json())
+    .then(data => renderCountry(data[0], 'neighbour'))
+    .catch(err => {
+      console.error(`${err} error`);
+      renderError(`Something went wrong ${err.message}. try again`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+// getPosition().then(pos => console.log(pos.coords));
+
+const whereAmI = function () {
+  getPosition()
+    .then(pos => {
+      const { latitude: lat, longitude: lang } = pos.coords;
+
+      return fetch(
+        `https://geocode.xyz/${lat},${lang}?geoit=json&auth=18407264889908616115x32242`
+      );
+    })
+    .then(response => {
+      // console.log(response);
+      if (!response.ok) throw new Error(`problem with geocoding ${res.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      console.log(`you are in ${data.city}, ${data.country}`);
+      getCountryData(data.country);
+
+      // ApiData = data;
+    })
+    .catch(err => console.log(err.msg, 'error'));
+};
+
+whereAmI();
