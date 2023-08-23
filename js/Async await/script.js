@@ -605,10 +605,10 @@ console.log('first');
 })();
 */
 
-const get3countries = async function(c1,c2,c3){
-  try {
-    await 
-  } catch (error) {
-    
-  }
-}
+// const get3countries = async function(c1,c2,c3){
+//   try {
+//     await
+//   } catch (error) {
+
+//   }
+// }
