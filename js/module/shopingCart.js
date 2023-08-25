@@ -10,3 +10,5 @@ export const addToCart = function (produnct, quantity) {
 
   console.log(`${produnct} ${quantity}  added to cart`);
 };
+
+////
