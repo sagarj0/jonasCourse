@@ -5,10 +5,16 @@ const shippingCost = 83;
 
 const cart = [];
 
-export const addToCart = function (produnct, quantity) {
-  cart.push({ produnct, quantity });
+export const addToCart = function (product, quantity) {
+  cart.push({ product, quantity });
 
-  console.log(`${produnct} ${quantity}  added to cart`);
+  console.log(`${product} ${quantity}  added to cart`);
 };
+
+const totalPrice = 500;
+
+const totalQuantity = 20;
+
+export { totalPrice, totalQuantity };
 
 ////
