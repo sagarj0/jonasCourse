@@ -13,25 +13,30 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
     <script>
-      function App() {
-        const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+      // function App() {
+      //   const [time, setTime] = React.useState(new Date().toLocaleTimeString());
 
-        React.useEffect(function () {
-          setInterval(function () {
-            setTime(new Date().toLocaleTimeString());
-          }, 1000);
-        }, []);
+      //   React.useEffect(function () {
+      //     setInterval(function () {
+      //       setTime(new Date().toLocaleTimeString());
+      //     }, 1000);
+      //   }, []);
 
-        return React.createElement(
-          "header",
-          null,
-          `Hello React !! its ${time}`
-        );
-      }
+      //   return React.createElement(
+      //     "header",
+      //     null,
+      //     `Hello React !! its ${time}`
+      //   );
+      // }
 
-      const root = ReactDOM.createRoot(document.getElementById("root"));
+      // const root = ReactDOM.createRoot(document.getElementById("root"));
 
-      root.render(React.createElement(App));
+      // root.render(React.createElement(App));
+
+      console.log(fetch("https://jsonplaceholder.typicode.com/todos/1"));
+
+      // .then((response) => response.json())
+      // .then((json) => console.log(json));
     </script>
   </body>
 </html>
