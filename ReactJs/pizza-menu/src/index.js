@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+
 const pizzaData = [
   {
     name: "Focaccia",
@@ -57,15 +58,16 @@ function App() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-function Pizza() {
+function Pizza(props) {
   return (
-    <div>
-      <img src="pizzas/funghi.jpg" alt="Pizza Funghi" />
-      <h2>Pizza Funghi</h2>
-      <p>Tomato, mozarella, mushrooms, and onion</p>
-    </div>
+    <li className="pizza">
+      <img src={props.pizza.photoName} alt={props.pizza.name} />
+      <div>
+        <h3>{props.pizza.name}</h3>
+        <p>{props.pizza.ingredients}</p>
+        <span>{props.pizza.price}</span>
+      </div>
+    </li>
   );
 }
 
@@ -87,9 +89,18 @@ function Menu() {
   return (
     <div className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+
+      <ul>
+        {pizzaData.map((pizza) => (
+          <Pizza pizza={pizza} key={pizza.name} />
+        ))}
+      </ul>
+      {/* <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, mushrooms, and onion"
+        photoName="pizzas/funghi.jpg"
+        price={10}
+      /> */}
     </div>
   );
 }
@@ -114,6 +125,7 @@ function Footer() {
   );
 }
 
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
