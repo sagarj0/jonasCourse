@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
+import "./index.css";
 const pizzaData = [
   {
     name: "Focaccia",
@@ -48,11 +48,11 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
-      <h1>Hello, I am leaqwertfgrig,</h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+    <div className="container">
+      <Header />
+      {/* <h1>Hello, I am learning React,</h1> */}
+      <Menu />
+      <Footer />
     </div>
   );
 }
@@ -66,6 +66,51 @@ function Pizza() {
       <h2>Pizza Funghi</h2>
       <p>Tomato, mozarella, mushrooms, and onion</p>
     </div>
+  );
+}
+
+function Header() {
+  // const style = { color: "red", fontSize: "32px", textTransform: "uppercase" };
+
+  return (
+    <header className="header">
+      <h1
+      // style={style}
+      >
+        fast React Pizza Co.
+      </h1>
+    </header>
+  );
+}
+
+function Menu() {
+  return (
+    <div className="menu">
+      <h2>Our Menu</h2>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </div>
+  );
+}
+
+function Footer() {
+  const hour = new Date().getHours();
+  // console.log(hour);
+
+  const openHr = 10;
+  const closeHr = 22;
+
+  const isOpen = hour >= openHr && hour <= closeHr;
+
+  console.log(isOpen);
+
+  // if (hour >= openHr && hour <= closeHr) alert("currently open");
+  // else alert("currently close");
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()} Currently Open
+    </footer>
   );
 }
 
