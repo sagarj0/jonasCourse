@@ -13,7 +13,7 @@ const url = require("url");
 
 // console.log(fs);
 
-// const textIn = fs.readFileSync("nodejs/node-farm/txt/input.txt", "utf-8");
+// const textIn = fs.readFileS ync("nodejs/node-farm/txt/input.txt", "utf-8");
 
 // console.log(textIn);
 
@@ -75,33 +75,31 @@ const replaceTemplate = (temp, product) => {
 };
 
 const server = http.createServer((req, res) => {
-  const pathName = req.url;
-  console.log(pathName);
+  const { query, pathname } = url.parse(req.url, true);
+
+  console.log(url.parse(req.url, true));
 
   //OVERVIEW PAGE
-  if (pathName === "/overview" || pathName === "/") {
+  if (pathname === "/overview" || pathname === "/") {
     res.writeHead(200, { "Content-type": "text/html" });
 
     const cardsHtml = dataObj
       .map((el) => replaceTemplate(tempCard, el))
       .join("");
-
-    // console.log(cardsHtml);
-
     const output = tempOverview.replace("{%PRODUCT_CARD%}", cardsHtml);
-
-    // console.log(output);
 
     res.end(output);
   }
   ///PRODUCT PAGE
-  else if (pathName === "/product") {
+  else if (pathname === "/product") {
     res.writeHead(200, { "Content-type": "text/html" });
+    const product = dataObj[query.id];
+    const output = replaceTemplate(tempProduct, product);
 
-    res.end(tempProduct);
+    res.end(output);
   }
   //API
-  else if (pathName === "/api") {
+  else if (pathname === "/api") {
     res.writeHead(200, { "Content-type": "application/json" });
     res.end(data);
   }
