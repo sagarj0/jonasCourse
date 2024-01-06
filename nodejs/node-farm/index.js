@@ -4,6 +4,8 @@ const http = require("http");
 
 const url = require("url");
 
+const replaceTemplate = require("./modules/replaceTemplate.js");
+
 //////////////////////
 /////FILES
 // const { text } = require("node:stream/consumers");
@@ -50,30 +52,6 @@ const data = fs.readFileSync("./dev-data/data.json", "utf-8");
 
 const dataObj = JSON.parse(data);
 
-// console.log(dataObj);
-
-const replaceTemplate = (temp, product) => {
-  let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
-
-  output = output.replace(/{%IMAGE%}/g, product.image);
-
-  output = output.replace(/{%PRICE%}/g, product.price);
-
-  output = output.replace(/{%FROM%}/g, product.from);
-
-  output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
-
-  output = output.replace(/{%QUANTITY%}/g, product.quantity);
-
-  output = output.replace(/{%DESCRIPTION%}/g, product.description);
-
-  output = output.replace(/{%ID%}/g, product.id);
-
-  if (!product.organic)
-    output = output.replace(/{%NOT_ORGANIC%}/g, "not-organic");
-  return output;
-};
-
 const server = http.createServer((req, res) => {
   const { query, pathname } = url.parse(req.url, true);
 
@@ -109,7 +87,6 @@ const server = http.createServer((req, res) => {
     res.writeHead(404, { "Content-type": "text/html" });
     res.end("<h1 style = color:red >Page not found</h1>");
   }
-  // res.end("hello from the server");
 });
 
 server.listen(8000, () => {
