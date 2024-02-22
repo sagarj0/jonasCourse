@@ -1,34 +1,21 @@
-exports.getAllUsers = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'thiss route is not defined yet',
+const User = require('../models/userModel');
+
+exports.signup = async (req, res) => {
+  const newUser = await User.create(req.body);
+
+  res.status(201).json({
+    status: 'success',
+    message: 'User created successfully',
+    data: { newUser },
   });
 };
 
-exports.addUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'thiss route is not defined yet',
-  });
-};
+exports.getAllUsers = async (req, res) => {
+  const users = await User.find();
 
-exports.getUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'thiss route is not defined yet',
-  });
-};
-
-exports.updateUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'thiss route is not defined yet',
-  });
-};
-
-exports.deleteUser = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    message: 'thiss route is not defined yet',
+  res.status(200).json({
+    status: 'success',
+    message: 'All users fetched successfully',
+    data: { users },
   });
 };
