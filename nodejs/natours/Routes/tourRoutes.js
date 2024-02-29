@@ -19,10 +19,10 @@ router
   .route('/monthly-plan/:year')
   .get(tourController.getMonthlyPlan);
 
-router.route('/').get(tourController.getAllTours).post(
-  // tourController.checkBody,
-  tourController.addTour
-);
+router
+  .route('/')
+  .get(tourController.getAllTours)
+  .post(tourController.addTour);
 
 router
   .route('/:id')
