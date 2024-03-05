@@ -68,7 +68,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
-    token = re.headers.authorization.split(' ')[1];
+    token = req.headers.authorization.split(' ')[1];
   }
 
   if (!token) {
@@ -85,6 +85,25 @@ exports.protect = catchAsync(async (req, res, next) => {
   );
 
   const freshUser = await User.findById(decoded.id);
+  if (!freshUser) {
+    return next(
+      new AppError(
+        'The user belonging to this token does no longer exist',
+        401
+      )
+    );
+  }
+
+  if (freshUser.changedPasswordAfter(decoded.iat)) {
+    return next(
+      new AppError(
+        'User recently changed password! Please login again',
+        401
+      )
+    );
+  }
+
+  req.user = freshUser;
 
   next();
 });

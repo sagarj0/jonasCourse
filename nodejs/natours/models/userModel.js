@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'User must have password'],
-    minlength: 8,
+    minlength: 5,
     select: false,
   },
   passwordConfirm: {
@@ -53,6 +53,20 @@ userSchema.methods.correctPassword = async function (
     candidatePassword,
     userPassword
   );
+};
+
+userSchema.methods.changedPasswordAfter = function (
+  JWTTimestamp
+) {
+  if (this.passwordChangedAt) {
+    const changedTimestamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    return JWTTimestamp < changedTimestamp;
+  }
+
+  return false;
 };
 
 const User = mongoose.model('User', userSchema);
